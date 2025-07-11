@@ -1,0 +1,17 @@
+{
+  "name": "asistente-ia-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VS Code extension with a ReAct agent using Gemini and Ollama",
+  "scripts": {
+    "postinstall": "npm install --prefix packages/extension && npm install --prefix packages/webview",
+    "build": "npm run build --prefix packages/extension && npm run build --prefix packages/webview",
+    "watch": "npm run watch --prefix packages/extension"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

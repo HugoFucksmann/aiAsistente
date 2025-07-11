@@ -1,0 +1,57 @@
+{
+  "name": "extension",
+  "version": "0.0.1",
+  "private": true,
+  "description": "The VS Code extension host and ReAct agent logic.",
+  "main": "./dist/extension.js",
+  "engines": {
+    "vscode": ">=1.70.0"
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "build": "npm run copy-assets && tsc -p ./",
+    "compile": "npm run copy-assets && tsc -p ./",
+    "copy-assets": "copyfiles -u 1 \"images/**/*.svg\" dist",
+    "watch": "npm run copy-assets && tsc -watch -p ./"
+  },
+  "activationEvents": [
+    "onView:asistente-ia.chatView"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "asistente-ia-sidebar",
+          "title": "Asistente IA",
+          "icon": "dist/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "asistente-ia-sidebar": [
+        {
+          "id": "asistente-ia.chatView",
+          "name": "Chat",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "asistente-ia.showChat",
+        "title": "Show Asistente IA Chat"
+      }
+    ]
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.10.0",
+    "dotenv": "^17.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "@types/vscode": "^1.89.0",
+    "copyfiles": "^2.4.1",
+    "typescript": "^5.3.3"
+  }
+}
